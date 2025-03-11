@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35806.99 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "proWeb", "proWeb\proWeb.csproj", "{DCE84B1A-2ECA-4574-8118-B1D08DB3E029}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "library", "library\library.csproj", "{3875E5F8-4B2A-4135-9E91-B15449A4519A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCE84B1A-2ECA-4574-8118-B1D08DB3E029}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCE84B1A-2ECA-4574-8118-B1D08DB3E029}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCE84B1A-2ECA-4574-8118-B1D08DB3E029}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCE84B1A-2ECA-4574-8118-B1D08DB3E029}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3875E5F8-4B2A-4135-9E91-B15449A4519A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3875E5F8-4B2A-4135-9E91-B15449A4519A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3875E5F8-4B2A-4135-9E91-B15449A4519A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3875E5F8-4B2A-4135-9E91-B15449A4519A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6F349422-08D7-4E4E-8DBA-51DEBDD88FA5}
+	EndGlobalSection
+EndGlobal
