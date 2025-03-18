@@ -11,7 +11,7 @@ namespace proWeb
 {
 
 
-    public partial class WebForm1
+    public partial class Default
     {
 
         /// <summary>
@@ -69,6 +69,24 @@ namespace proWeb
         protected global::System.Web.UI.WebControls.TextBox CreationDate;
 
         /// <summary>
+        /// Control ValidationSummaryCreate.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummaryCreate;
+
+        /// <summary>
+        /// Control ValidationSummaryUpdate.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummaryUpdate;
+
+        /// <summary>
         /// Control ButtonCreate.
         /// </summary>
         /// <remarks>
@@ -76,15 +94,6 @@ namespace proWeb
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ButtonCreate;
-
-        /// <summary>
-        /// Control LblCreate.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblCreate;
 
         /// <summary>
         /// Control ButtonUpdate.
@@ -139,5 +148,14 @@ namespace proWeb
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ButtonNext;
+
+        /// <summary>
+        /// Control LblInfo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblInfo;
     }
 }
