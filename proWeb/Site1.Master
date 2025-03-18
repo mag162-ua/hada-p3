@@ -10,9 +10,9 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <p>Martín Aznar García - 51797315G</p>
-    <p>Álvaro Francisco Ramiro Pascual - 74391073B</p>
-    <h1>HADA P3 - CURSO 2024/25</h1>
+    <p>Martín Aznar García 51797315G </p>
+    <p>Álvaro Francisco Ramiro Pascual 74391073B </p>
+    <h1>HADA P3 - CURSO 2024/25 </h1>
     <form id="form1" runat="server">
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
