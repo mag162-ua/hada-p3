@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace library
 {
@@ -15,187 +16,269 @@ namespace library
 
         public CADProduct()
         {
-            this.constring = "Server=TU_SERVIDOR;Database=TU_BASE_DATOS;User Id=TU_USUARIO;Password=TU_CONTRASEÑA;";
-            SqlConnection conn = new SqlConnection(constring);
-            conn.Open();
+            // this.constring = "Server=TU_SERVIDOR;Database=TU_BASE_DATOS;User Id=TU_USUARIO;Password=TU_CONTRASEÑA;";
+            this.constring = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
+            //SqlConnection conn = new SqlConnection(constring);
+            //conn.Open();
         }
 
         public bool Create(ENProduct en)
         {
-
-            using (SqlConnection conn = new SqlConnection(constring))
+            try
             {
-                string query = "insert into Products values "+ en.Name +","+ en.Code +"," + en.Amount +"," + en.Price +","+ en.Category +","+ en.CreationDate ;
 
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlConnection conn = new SqlConnection(constring))
                 {
-                    //cmd.Parameters.AddWithValue("@Nombre", nombre);
-                    int rowsAffected = cmd.ExecuteNonQuery();
+                    string query = "INSERT INTO Products (Name, Code, Amount, Price, Category, CreationDate) VALUES (@Name, @Code, @Amount, @Price, @Category, @CreationDate)";
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Name", en.Name);
+                        cmd.Parameters.AddWithValue("@Code", en.Code);
+                        cmd.Parameters.AddWithValue("@Amount", en.Amount);
+                        cmd.Parameters.AddWithValue("@Price", en.Price);
+                        cmd.Parameters.AddWithValue("@Category", en.Category);
+                        cmd.Parameters.AddWithValue("@CreationDate", en.CreationDate);
 
-                    Console.WriteLine($"{rowsAffected} fila(s) insertada(s).");
-                    if (rowsAffected == 0)
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        return true;
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        //Console.WriteLine($"{rowsAffected} fila(s) insertada(s).");
+                        if (rowsAffected == 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
                     }
                 }
             }
-           
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"Error SQL en Create: {ex.Message}");
+                return false;
+            }
         }
 
         public bool Update(ENProduct en)
         {
-            using (SqlConnection conn = new SqlConnection(constring))
+            try
             {
-                string query = "update Products SET NOMBRE=" + en.Name + ",CODE=" + en.Code + ",AMOUNT=" + en.Amount + ",PRICE=" + en.Price + ",CATEGORY=" + en.Category + ",CREATION=" + en.CreationDate+
-                    "WHERE NOMBRE=" + en.Name + ",CODE=" + en.Code + ",AMOUNT=" + en.Amount + ",PRICE=" + en.Price + ",CATEGORY=" + en.Category + ",CREATION=" + en.CreationDate;
 
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlConnection conn = new SqlConnection(constring))
                 {
-                    //cmd.Parameters.AddWithValue("@Nombre", nombre);
-                    int rowsAffected = cmd.ExecuteNonQuery();
+                    string query = "UPDATE Products SET Name = @Name, Code = @Code, Amount = @Amount, Price = @Price, Category = @Category, CreationDate = @CreationDate WHERE Code = @Code";
 
-                    Console.WriteLine($"{rowsAffected} fila(s) insertada(s).");
-                    if (rowsAffected == 0)
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        return false;
-                    }
-                    else
-                    {
-                        return true;
+                        cmd.Parameters.AddWithValue("@Name", en.Name);
+                        cmd.Parameters.AddWithValue("@Code", en.Code);
+                        cmd.Parameters.AddWithValue("@Amount", en.Amount);
+                        cmd.Parameters.AddWithValue("@Price", en.Price);
+                        cmd.Parameters.AddWithValue("@Category", en.Category);
+                        cmd.Parameters.AddWithValue("@CreationDate", en.CreationDate);
+                        //cmd.Parameters.AddWithValue("@ID", en.ID);
+                        //cmd.Parameters.AddWithValue("@Nombre", nombre);
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        //Console.WriteLine($"{rowsAffected} fila(s) insertada(s).");
+                        if (rowsAffected == 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
                     }
                 }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"Error SQL en Create: {ex.Message}");
+                return false;
             }
         }
 
         public bool Delete(ENProduct en)
         {
-            using (SqlConnection conn = new SqlConnection(constring))
+            try
             {
-                string query = "DELETE FROM Productos WHERE NOMBRE=" + en.Name + ",CODE=" + en.Code + ",AMOUNT=" + en.Amount + ",PRICE=" + en.Price + ",CATEGORY=" + en.Category + ",CREATION=" + en.CreationDate;
 
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlConnection conn = new SqlConnection(constring))
                 {
-                    //cmd.Parameters.AddWithValue("@Nombre", nombre);
-                    int rowsAffected = cmd.ExecuteNonQuery();
 
-                    Console.WriteLine($"{rowsAffected} fila(s) insertada(s).");
-                    if (rowsAffected == 0)
+                    string query = "DELETE FROM Products WHERE Code = @Code";
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        return false;
-                    }
-                    else
-                    {
-                        return true;
+                        cmd.Parameters.AddWithValue("@Code", en.Code);
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        //Console.WriteLine($"{rowsAffected} fila(s) insertada(s).");
+                        if (rowsAffected == 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
                     }
                 }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"Error SQL en Create: {ex.Message}");
+                return false;
             }
         }
 
         public bool Read(ENProduct en)
         {
-            using (SqlConnection conn = new SqlConnection(constring))
+            try
             {
-                string query = "SELECT * FROM Productos WHERE NOMBRE =" + en.Name+ ",CODE=" + en.Code + ",AMOUNT=" + en.Amount + ",PRICE=" + en.Price + ",CATEGORY=" + en.Category + ",CREATION=" + en.CreationDate;
 
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlConnection conn = new SqlConnection(constring))
                 {
-                    //cmd.Parameters.AddWithValue("@Nombre", nombre);
-                    int rowsAffected = cmd.ExecuteNonQuery();
-
-                    Console.WriteLine($"{rowsAffected} fila(s) insertada(s).");
-                    if (rowsAffected == 0)
+                    string query = "SELECT * FROM Products WHERE Code = @Code";
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        return false;
-                    }
-                    else
-                    {
-                        return true;
+                        
+                        cmd.Parameters.AddWithValue("@Code", en.Code);
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                en.Name = reader["Name"].ToString();
+                                en.Amount = Convert.ToInt32(reader["Amount"]);
+                                en.Price = Convert.ToSingle(reader["Price"]);
+                                en.Category = Convert.ToInt32(reader["Category"]);
+                                en.CreationDate = Convert.ToDateTime(reader["CreationDate"]);
+                                return true;
+                            }
+                            return false;
+                        }
                     }
                 }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"Error SQL en Create: {ex.Message}");
+                return false;
             }
         }
 
         public bool ReadFirst(ENProduct en)
         {
-            using (SqlConnection conn = new SqlConnection(constring))
+            try
             {
-                string query = "SELECT * FROM Productos WHERE ID = 1";
 
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlConnection conn = new SqlConnection(constring))
                 {
-                    //cmd.Parameters.AddWithValue("@Nombre", nombre);
-                    int rowsAffected = cmd.ExecuteNonQuery();
+                    string query = "SELECT TOP 1 * FROM Products ORDER BY ID ASC";
 
-                    Console.WriteLine($"{rowsAffected} fila(s) insertada(s).");
-                    if (rowsAffected == 0)
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        return false;
-                    }
-                    else
-                    {
-                        return true;
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                en.Code = reader["Code"].ToString();
+                                en.Name = reader["Name"].ToString();
+                                en.Amount = Convert.ToInt32(reader["Amount"]);
+                                en.Price = Convert.ToSingle(reader["Price"]);
+                                en.Category = Convert.ToInt32(reader["Category"]);
+                                en.CreationDate = Convert.ToDateTime(reader["CreationDate"]);
+                                return true;
+                            }
+                            return false;
+                        }
                     }
                 }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"Error SQL en Create: {ex.Message}");
+                return false;
             }
         }
 
         public bool ReadNext(ENProduct en)
         {
-            string query = "SELECT * FROM Productos WHERE ID = (SELECT ID+1 FROM Productos WHERE NOMBRE =" + en.Name + ",CODE=" + en.Code + ",AMOUNT=" + en.Amount + ",PRICE=" + en.Price + ",CATEGORY=" + en.Category + ",CREATION=" + en.CreationDate+")";
-
-            using (SqlConnection conn = new SqlConnection(constring))
+            try
             {
-                               conn.Open();
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    //cmd.Parameters.AddWithValue("@Nombre", nombre);
-                    int rowsAffected = cmd.ExecuteNonQuery();
+                string query = "SELECT TOP 1 * FROM Products WHERE Code > @Code ORDER BY Code ASC";
 
-                    Console.WriteLine($"{rowsAffected} fila(s) insertada(s).");
-                    if (rowsAffected == 0)
+                using (SqlConnection conn = new SqlConnection(constring))
+                {
+
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        return false;
-                    }
-                    else
-                    {
-                        return true;
+                        cmd.Parameters.AddWithValue("@Code", en.Code);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                en.Code = reader["Code"].ToString();
+                                en.Name = reader["Name"].ToString();
+                                en.Amount = Convert.ToInt32(reader["Amount"]);
+                                en.Price = Convert.ToSingle(reader["Price"]);
+                                en.Category = Convert.ToInt32(reader["Category"]);
+                                en.CreationDate = Convert.ToDateTime(reader["CreationDate"]);
+                                return true;
+                            }
+                            return false;
+                        }
                     }
                 }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"Error SQL en Create: {ex.Message}");
+                return false;
             }
         }
 
         public bool ReadPrev(ENProduct en)
         {
-            using (SqlConnection conn = new SqlConnection(constring))
+            try
             {
-                string query = "SELECT * FROM Productos WHERE ID = (SELECT ID-1 FROM Productos WHERE NOMBRE =" + en.Name + ",CODE=" + en.Code + ",AMOUNT=" + en.Amount + ",PRICE=" + en.Price + ",CATEGORY=" + en.Category + ",CREATION=" + en.CreationDate+")";
 
-
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlConnection conn = new SqlConnection(constring))
                 {
-                    //cmd.Parameters.AddWithValue("@Nombre", nombre);
-                    int rowsAffected = cmd.ExecuteNonQuery();
+                    string query = "SELECT TOP 1 * FROM Products WHERE Code < @Code ORDER BY Code DESC";
 
-                    Console.WriteLine($"{rowsAffected} fila(s) insertada(s).");
-                    if (rowsAffected == 0)
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        return false;
-                    }
-                    else
-                    {
-                        return true;
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                en.Code = reader["Code"].ToString();
+                                en.Name = reader["Name"].ToString();
+                                en.Amount = Convert.ToInt32(reader["Amount"]);
+                                en.Price = Convert.ToSingle(reader["Price"]);
+                                en.Category = Convert.ToInt32(reader["Category"]);
+                                en.CreationDate = Convert.ToDateTime(reader["CreationDate"]);
+                                return true;
+                            }
+                            return false;
+                        }
                     }
                 }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"Error SQL en Create: {ex.Message}");
+                return false;
             }
         }
 
