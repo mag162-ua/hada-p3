@@ -7,6 +7,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.ComponentModel;
+using library;
+using System.Diagnostics;
 
 namespace proWeb
 {
@@ -60,9 +62,13 @@ namespace proWeb
         {
             if (ValidarDatos())
             {
-                ENProduct nw_product_EN = new ENProduct(sender);
-                CADProduct nw_product_CAD = new CADProduct();
-                nw_product_CAD.create(nw_product_EN);
+                int amount = int.Parse(Amount.Text);
+                float price = float.Parse(Price.Text);
+                int category = int.Parse(Category.SelectedValue);
+                DateTime creationDate = DateTime.Parse(CreationDate.Text); 
+
+                ENProduct nw_product_EN = new ENProduct(Code.Text,Name.Text,amount,price,category,creationDate);
+                nw_product_EN.Create();
                 LblInfo.Text = "Product created successfully";
             }
             else
@@ -75,9 +81,13 @@ namespace proWeb
         {
             if (!string.IsNullOrWhiteSpace(Code.Text))
             {
-                ENProduct nw_product_EN = new ENProduct(sender);
-                CADProduct nw_product_CAD = new CADProduct();
-                nw_product_CAD.delete(nw_product_EN);
+                int amount = int.Parse(Amount.Text);
+                float price = float.Parse(Price.Text);
+                int category = int.Parse(Category.SelectedValue);
+                DateTime creationDate = DateTime.Parse(CreationDate.Text);
+
+                ENProduct nw_product_EN = new ENProduct(Code.Text, Name.Text, amount, price, category, creationDate);
+                nw_product_EN.Delete();
                 LblInfo.Text = "Product deleted successfully";
             }
             else
@@ -90,9 +100,14 @@ namespace proWeb
         {
             if (ValidarDatos())
             {
-                ENProduct nw_product_EN = new ENProduct(sender);
-                CADProduct nw_product_CAD = new CADProduct();
-                nw_product_CAD.update(nw_product_EN);
+
+                int amount = int.Parse(Amount.Text);
+                float price = float.Parse(Price.Text);
+                int category = int.Parse(Category.SelectedValue);
+                DateTime creationDate = DateTime.Parse(CreationDate.Text);
+
+                ENProduct nw_product_EN = new ENProduct(Code.Text, Name.Text, amount, price, category, creationDate);
+                nw_product_EN.Update();
                 LblInfo.Text = "Product updated successfully";
             }
             else
@@ -103,28 +118,44 @@ namespace proWeb
         }
         protected void ButtonRead_Action(object sender, EventArgs e)
         {
-            ENProduct nw_product_EN = new ENProduct(sender);
-            CADProduct nw_product_CAD = new CADProduct();
-            nw_product_CAD.read(nw_product_EN);
+            int amount = int.Parse(Amount.Text);
+            float price = float.Parse(Price.Text);
+            int category = int.Parse(Category.SelectedValue);
+            DateTime creationDate = DateTime.Parse(CreationDate.Text);
+
+            ENProduct nw_product_EN = new ENProduct(Code.Text, Name.Text, amount, price, category, creationDate);
+            nw_product_EN.Read();
         }
         protected void ButtonRF_Action(object sender, EventArgs e)
         {
-            ENProduct nw_product_EN = new ENProduct(sender);
-            CADProduct nw_product_CAD = new CADProduct();
-            nw_product_CAD.readFirst(nw_product_EN);
+            int amount = int.Parse(Amount.Text);
+            float price = float.Parse(Price.Text);
+            int category = int.Parse(Category.SelectedValue);
+            DateTime creationDate = DateTime.Parse(CreationDate.Text);
+
+            ENProduct nw_product_EN = new ENProduct(Code.Text, Name.Text, amount, price, category, creationDate);
+            nw_product_EN.ReadFirst();
         }
 
         protected void ButtonPrev_Action(object sender, EventArgs e)
         {
-            ENProduct nw_product_EN = new ENProduct(sender);
-            CADProduct nw_product_CAD = new CADProduct();
-            nw_product_CAD.readPrev(nw_product_EN);
+            int amount = int.Parse(Amount.Text);
+            float price = float.Parse(Price.Text);
+            int category = int.Parse(Category.SelectedValue);
+            DateTime creationDate = DateTime.Parse(CreationDate.Text);
+
+            ENProduct nw_product_EN = new ENProduct(Code.Text, Name.Text, amount, price, category, creationDate);
+            nw_product_EN.ReadPrev();
         }
         protected void ButtonNext_Action(object sender, EventArgs e)
         {
-            ENProduct nw_product_EN = new ENProduct(sender);
-            CADProduct nw_product_CAD = new CADProduct();
-            nw_product_CAD.readNext(nw_product_EN);
+            int amount = int.Parse(Amount.Text);
+            float price = float.Parse(Price.Text);
+            int category = int.Parse(Category.SelectedValue);
+            DateTime creationDate = DateTime.Parse(CreationDate.Text);
+
+            ENProduct nw_product_EN = new ENProduct(Code.Text, Name.Text, amount, price, category, creationDate);
+            nw_product_EN.ReadNext();
         }
     }
 }
