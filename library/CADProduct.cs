@@ -97,7 +97,7 @@ namespace library
             }
             catch (SqlException ex)
             {
-                Console.WriteLine($"Error SQL en Create: {ex.Message}");
+                Console.WriteLine($"Error SQL en Update: {ex.Message}");
                 return false;
             }
         }
@@ -131,7 +131,7 @@ namespace library
             }
             catch (SqlException ex)
             {
-                Console.WriteLine($"Error SQL en Create: {ex.Message}");
+                Console.WriteLine($"Error SQL en Delete: {ex.Message}");
                 return false;
             }
         }
@@ -167,7 +167,7 @@ namespace library
             }
             catch (SqlException ex)
             {
-                Console.WriteLine($"Error SQL en Create: {ex.Message}");
+                Console.WriteLine($"Error SQL en Read: {ex.Message}");
                 return false;
             }
         }
@@ -203,7 +203,7 @@ namespace library
             }
             catch (SqlException ex)
             {
-                Console.WriteLine($"Error SQL en Create: {ex.Message}");
+                Console.WriteLine($"Error SQL en ReadFirst: {ex.Message}");
                 return false;
             }
         }
@@ -241,7 +241,7 @@ namespace library
             }
             catch (SqlException ex)
             {
-                Console.WriteLine($"Error SQL en Create: {ex.Message}");
+                Console.WriteLine($"Error SQL en ReadNext: {ex.Message}");
                 return false;
             }
         }
@@ -277,7 +277,7 @@ namespace library
             }
             catch (SqlException ex)
             {
-                Console.WriteLine($"Error SQL en Create: {ex.Message}");
+                Console.WriteLine($"Error SQL en ReadPrev: {ex.Message}");
                 return false;
             }
         }
