@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Data.Common;
+using System.Data.SqlTypes;
 
 namespace library
 {
