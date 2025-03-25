@@ -21,6 +21,7 @@ namespace proWeb
         }
         private void CargarProductos()
         {
+
             string connStr = ConfigurationManager.ConnectionStrings["Conexion"].ConnectionString;
             using (SqlConnection conn = new SqlConnection(connStr))
             {
@@ -41,17 +42,61 @@ namespace proWeb
         private bool ValidarDatos()
         {
             if (string.IsNullOrWhiteSpace(Code.Text) || Code.Text.Length > 16)
+            {
+                LblInfo.Text += "Code is required \n";
                 return false;
-            if (string.IsNullOrWhiteSpace(Name.Text) || Name.Text.Length > 32)
+            }
+
+            if (Code.Text.Length > 16)
+            {
+                LblInfo.Text += "Code must be 1 - 16 alphanumeric characters \n";
                 return false;
-            if (!int.TryParse(Amount.Text, out int amount) || amount < 0 || amount > 9999)
+            }
+            if (string.IsNullOrWhiteSpace(Name.Text))
+            {
+                LblInfo.Text += "Name is required \n";
                 return false;
+            }
+
+            if(Name.Text.Length > 32)
+            {
+                LblInfo.Text += "Name must be 1- 32 letter characters \n";
+                return false;
+            }
+
+            if (!int.TryParse(Amount.Text, out int amount2))
+            {
+                LblInfo.Text += "Amount must be a number \n";
+                return false;
+            }
+
+            if (!int.TryParse(Amount.Text, out int amount) && (amount < 0 || amount > 9999))
+            {
+                LblInfo.Text += "Amount must be 0 - 9999 \n";
+                return false;
+            }
+
+            if (!decimal.TryParse(Price.Text, out decimal price2))
+            {
+                LblInfo.Text += "Price must be a number \n";
+                return false;
+            }
+
             if (!decimal.TryParse(Price.Text, out decimal price) || price < 0 || price > 9999.99m)
-                return false;
+                LblInfo.Text += "Price must be 0 - 9999.99 \n";
+            return false;
+
             if (!DateTime.TryParseExact(CreationDate.Text, "dd/MM/yyyy HH:mm:ss", null, System.Globalization.DateTimeStyles.None, out DateTime _))
+            {
+                LblInfo.Text += "Creation date must be a valid date \n";
                 return false;
+            }
+
             if (Category.SelectedValue != "0" && Category.SelectedValue != "1" && Category.SelectedValue != "2" && Category.SelectedValue != "3")
+            {
+                LblInfo.Text += "Category must be a valid category \n";
                 return false;
+            }
 
             return true;
         }
@@ -67,7 +112,7 @@ namespace proWeb
             }
             else
             {
-                LblInfo.Text = "Error: Invalid input";
+                LblInfo.Text += "Error: Invalid input";
             }
 
         }
@@ -82,7 +127,7 @@ namespace proWeb
             }
             else
             {
-                LblInfo.Text = "Error: Invalid input";
+                LblInfo.Text += "Error: Invalid input";
             }
 
         }
@@ -97,7 +142,7 @@ namespace proWeb
             }
             else
             {
-                LblInfo.Text = "Error: Invalid input";
+                LblInfo.Text += "Error: Invalid input";
             }
 
         }

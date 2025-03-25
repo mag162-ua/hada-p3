@@ -7,7 +7,7 @@
  <asp:TextBox ID="Code" runat="server" MaxLength="16"></asp:TextBox>
  <asp:RequiredFieldValidator ControlToValidate="Code" ErrorMessage="Code is required" runat="server" ForeColor="Red"></asp:RequiredFieldValidator>
  &nbsp
- <asp:RegularExpressionValidator ControlToValidate="Code" ValidationExpression="^[a-zA-Z0-9]{1,16}$" ErrorMessage="Code must be 1-16 alphanumeric characters." runat="server" ForeColor="Red" ValidationGroup="CreateValidation"></asp:RegularExpressionValidator>
+ <asp:RegularExpressionValidator ControlToValidate="Code" ValidationExpression="^[a-zA-Z0-9]{1,16}$" ErrorMessage="Code must be 1-16 alphanumeric characters" runat="server" ForeColor="Red" ValidationGroup="CreateValidation"></asp:RegularExpressionValidator>
  <br />
  <br />
  Name&nbsp;&nbsp;&nbsp;&nbsp;
