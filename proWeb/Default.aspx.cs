@@ -18,26 +18,19 @@ namespace proWeb
         {
             if (!IsPostBack)
             {
-                CargarProductos();
+                CargarCategory();
             }
         }
-        private void CargarProductos()
+        private void CargarCategory()
         {
-            string connStr = ConfigurationManager.ConnectionStrings["Conexion"].ConnectionString;
-            using (SqlConnection conn = new SqlConnection(connStr))
-            {
-                string query = "SELECT name FROM Categories";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                conn.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-                Category.DataSource = reader;
-                Category.DataTextField = "name";
-                Category.DataValueField = "id";
-                Category.DataBind();
-                reader.Close();
-            }
-            Category.Items.Insert(0, new ListItem("Select a category", "0"));
+            CADCategory cat = new CADProduct();
+            List<ENCategory> cats = cat.ReadAll();
 
+            Category.Items.Clear();
+            foreach (ENCategory cat in cats)
+            {
+                Category.Items.Add(new ListItem(cat.Name, cat.Code));
+            }
         }
 
         private bool ValidarDatos()
@@ -58,6 +51,11 @@ namespace proWeb
             return true;
         }
 
+        private bool ProductExists(ENProduct product)
+        {
+            return product.Read();
+        }
+
         protected void ButtonCreate_Action(object sender, EventArgs e)
         {
             if (ValidarDatos())
@@ -68,6 +66,12 @@ namespace proWeb
                 DateTime creationDate = DateTime.Parse(CreationDate.Text); 
 
                 ENProduct nw_product_EN = new ENProduct(Code.Text,Name.Text,amount,price,category,creationDate);
+
+                if (ProductExists(nw_product_EN))
+                {
+                    LblInfo.Text = "Error: Product already exists";
+                    return;
+                }
                 nw_product_EN.Create();
                 LblInfo.Text = "Product created successfully";
             }
@@ -87,6 +91,12 @@ namespace proWeb
                 DateTime creationDate = DateTime.Parse(CreationDate.Text);
 
                 ENProduct nw_product_EN = new ENProduct(Code.Text, Name.Text, amount, price, category, creationDate);
+
+                if (!ProductExists(nw_product_EN))
+                {
+                    LblInfo.Text = "Error: Product do not exists";
+                    return;
+                }
                 nw_product_EN.Delete();
                 LblInfo.Text = "Product deleted successfully";
             }
@@ -107,6 +117,12 @@ namespace proWeb
                 DateTime creationDate = DateTime.Parse(CreationDate.Text);
 
                 ENProduct nw_product_EN = new ENProduct(Code.Text, Name.Text, amount, price, category, creationDate);
+
+                if (!ProductExists(nw_product_EN))
+                {
+                    LblInfo.Text = "Error: Product do not exists";
+                    return;
+                }
                 nw_product_EN.Update();
                 LblInfo.Text = "Product updated successfully";
             }
