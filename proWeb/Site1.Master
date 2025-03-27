@@ -7,12 +7,40 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
+        <style>
+        .container {
+            width: 60%;
+            margin: auto;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            text-align: initial;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .banner {
+            background-color: #39b8b8;
+            color: black;
+            text-align: center;
+            padding: 40px;
+            font-size: 34px;
+            font-weight: bold;
+        }
+        </style>
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <p>Martín Aznar García 51797315G </p>
-    <p>Álvaro Francisco Ramiro Pascual 74391073B </p>
-    <h1>HADA P3 - CURSO 2024/25 </h1>
+    <div class ="container">
+        <div class ="header">
+            Álvaro Francisco Ramiro Pascual - 74391073B <br />
+            Martín Aznar - 51797315G
+        </div>
+        <div class="banner">
+            HADA P3 - CURSO 2024/2025
+        </div>
+    </div>
     <form id="form1" runat="server">
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
