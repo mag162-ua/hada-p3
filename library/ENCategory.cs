@@ -12,6 +12,11 @@ namespace library
     {
         public string Name { get; set; }  // Nombre de la categoría
 
+        public ENCategory()
+        {
+            Name = "POR_DEFECTO";
+        }
+
         public ENCategory(string name)
         {
             Name = name;
