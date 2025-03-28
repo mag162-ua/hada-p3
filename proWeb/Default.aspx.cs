@@ -23,13 +23,14 @@ namespace proWeb
         }
         private void CargarCategory()
         {
-            CADCategory cat = new CADProduct();
+            ENCategory cat= new ENCategory();
             List<ENCategory> cats = cat.ReadAll();
 
             Category.Items.Clear();
-            foreach (ENCategory cat in cats)
+            
+            foreach (ENCategory read_cat in cats)
             {
-                Category.Items.Add(new ListItem(cat.Name, cat.Code));
+                Category.Items.Add(new ListItem(read_cat.Name));
             }
         }
 
