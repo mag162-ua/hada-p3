@@ -23,7 +23,6 @@
         .banner {
             background-color: #39b8b8;
             color: black;
-            text-align: center;
             padding: 40px;
             font-size: 34px;
             font-weight: bold;

@@ -66,6 +66,8 @@ namespace library
                         {
                             while (reader.Read())
                             {
+                                System.Diagnostics.Debug.WriteLine($"Leyendo categoría: {reader["Name"]}");
+
                                 categories.Add(new ENCategory(reader["Name"].ToString()));
                             }
                         }
@@ -75,6 +77,7 @@ namespace library
             catch (SqlException ex)
             {
                 Console.WriteLine($"Error SQL en ReadAll: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine("Hola");
             }
 
             return categories;
