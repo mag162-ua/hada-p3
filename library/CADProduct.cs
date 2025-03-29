@@ -75,6 +75,7 @@ namespace library
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
+                        System.Diagnostics.Debug.WriteLine(en.Name);
                         cmd.Parameters.AddWithValue("@Name", en.Name);
                         cmd.Parameters.AddWithValue("@Code", en.Code);
                         cmd.Parameters.AddWithValue("@Amount", en.Amount);
@@ -160,6 +161,7 @@ namespace library
                                 en.Price = Convert.ToSingle(reader["Price"]);
                                 en.Category = Convert.ToInt32(reader["Category"]);
                                 en.CreationDate = Convert.ToDateTime(reader["CreationDate"]);
+                                reader.Close();
                                 return true;
                             }
                             return false;

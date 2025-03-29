@@ -100,9 +100,9 @@
          <asp:Button ID="Button2" runat="server" Text="Update" CssClass="ButtonEstilo" OnClick="ButtonUpdate_Action" CausesValidation="true" ValidationGroup="UpdateValidation"/>
          <asp:Button ID="Button3" runat="server" Text="Delete" CssClass="ButtonEstilo" OnClick="ButtonDelete_Action" CausesValidation="false"/>
          <asp:Button ID="Button4" runat="server" Text="Read" CssClass="ButtonEstilo" OnClick="ButtonRead_Action" CausesValidation="false" />
-         <asp:Button ID="Button5" runat="server" Text="Read First" CssClass="ButtonEstilo" OnClick="ButtonRF_Action" CausesValidation="true" />
-         <asp:Button ID="Button6" runat="server" Text="Read Prev" CssClass="ButtonEstilo" OnClick="ButtonPrev_Action" CausesValidation="true" />
-         <asp:Button ID="Button7" runat="server" Text="Read Next" CssClass="ButtonEstilo" OnClick="ButtonNext_Action" CausesValidation="true" />
+         <asp:Button ID="Button5" runat="server" Text="Read First" CssClass="ButtonEstilo" OnClick="ButtonRF_Action" CausesValidation="false" />
+         <asp:Button ID="Button6" runat="server" Text="Read Prev" CssClass="ButtonEstilo" OnClick="ButtonPrev_Action" CausesValidation="false" />
+         <asp:Button ID="Button7" runat="server" Text="Read Next" CssClass="ButtonEstilo" OnClick="ButtonNext_Action" CausesValidation="false" />
          <br />
             <asp:Label ID="LblInfo" runat="server"></asp:Label>
         </div>
