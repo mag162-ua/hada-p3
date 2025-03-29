@@ -5,6 +5,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Data.Common;
 using System.Data.SqlTypes;
+using System.Web;
+using System.Configuration.Provider;
 
 
 namespace library
@@ -15,7 +17,10 @@ namespace library
 
         public CADCategory()
         {
-            this.constring = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
+            this.constring =ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
+            /*@"Server=(LocalDB)\MSSQLLocalDB;
+                   AttachDbFilename=|DataDirectory|\Database.mdf;
+                   Integrated Security=True;";*/
         }
 
         // Método para leer una categoría específica
@@ -56,17 +61,22 @@ namespace library
 
             try
             {
+                //SqlConnection conn = new SqlConnection(constring);
                 using (SqlConnection conn = new SqlConnection(constring))
                 {
+                    //Console.WriteLine("a");
                     conn.Open();
                     string query = "SELECT * FROM Categories";
+                //SqlCommand cmd = new SqlCommand(query, conn);
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-                                categories.Add(new ENCategory(reader["Name"].ToString()));
+                                //categories.Add(new ENCategory(reader["Name"].ToString()));
+                                string name = reader.IsDBNull(reader.GetOrdinal("Name")) ? string.Empty : reader["Name"].ToString();
+                                categories.Add(new ENCategory(name));
                             }
                         }
                     }
@@ -74,7 +84,10 @@ namespace library
             }
             catch (SqlException ex)
             {
+               
                 Console.WriteLine($"Error SQL en ReadAll: {ex.Message}");
+                //throw new Exception("Error al leer las categorías desde la base de datos.", ex);
+                //throw new Exception($"Error en ReadAll: {ex.Message} \nStackTrace: {ex.StackTrace}", ex);
             }
 
             return categories;
