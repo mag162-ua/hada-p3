@@ -27,10 +27,16 @@ namespace proWeb
             List<ENCategory> cats = cat.ReadAll();
 
             Category.Items.Clear();
-            
-            foreach (ENCategory read_cat in cats)
+            if (cats.Count == 0)
             {
-                Category.Items.Add(new ListItem(read_cat.Name));
+                Category.Items.Add(new ListItem("No hay categorías disponibles", "0"));
+            }
+            else
+            {
+                foreach (ENCategory read_cat in cats)
+                {
+                    Category.Items.Add(new ListItem(read_cat.Name));
+                }
             }
         }
 
