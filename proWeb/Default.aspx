@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .container {
-            width: 50%;
+            width: 100%;
             margin: auto;
             font-family: Arial, sans-serif;
         }
@@ -16,7 +16,6 @@
         .banner {
             background-color: #39b8b8;
             color: black;
-            text-align: center;
             padding: 40px;
             font-size: 34px;
             font-weight: bold;
@@ -72,7 +71,7 @@
          Amount&nbsp;&nbsp;&nbsp;&nbsp;
          <asp:TextBox ID="Amount" runat="server"></asp:TextBox>
          <asp:RequiredFieldValidator ControlToValidate="Amount" ErrorMessage="Amount is required" runat="server" ForeColor="Red" />
-            &nbsp
+         &nbsp
          <asp:RangeValidator ControlToValidate="Amount" ErrorMessage="Amount must be between 0 and 9999" MaximumValue="9999" Type="Integer" MinimumValue="0" runat="server" ForeColor="Red" ValidationGroup="CreateValidation"/>
          <br />
          <br />

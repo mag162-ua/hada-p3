@@ -86,8 +86,6 @@ namespace library
             {
                
                 Console.WriteLine($"Error SQL en ReadAll: {ex.Message}");
-                //throw new Exception("Error al leer las categorías desde la base de datos.", ex);
-                //throw new Exception($"Error en ReadAll: {ex.Message} \nStackTrace: {ex.StackTrace}", ex);
             }
 
             return categories;

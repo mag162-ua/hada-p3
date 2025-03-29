@@ -23,7 +23,7 @@ namespace proWeb
         }
         private void CargarCategory()
         {
-            ENCategory cat= new ENCategory();
+            ENCategory cat = new ENCategory();
             List<ENCategory> cats = cat.ReadAll();
 
             Category.Items.Clear();
@@ -90,7 +90,7 @@ namespace proWeb
         }
         protected void ButtonDelete_Action(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(Code.Text))
+            if (!string.IsNullOrWhiteSpace(Code.Text) || Code.Text.All(char.IsLetterOrDigit) || !(Code.Text.Length > 16))
             {
                 int amount = int.Parse(Amount.Text);
                 float price = float.Parse(Price.Text);
@@ -141,44 +141,76 @@ namespace proWeb
         }
         protected void ButtonRead_Action(object sender, EventArgs e)
         {
-            int amount = int.Parse(Amount.Text);
-            float price = float.Parse(Price.Text);
-            int category = int.Parse(Category.SelectedValue);
-            DateTime creationDate = DateTime.Parse(CreationDate.Text);
+            if (!string.IsNullOrWhiteSpace(Code.Text) || Code.Text.All(char.IsLetterOrDigit) || !(Code.Text.Length > 16))
+            {
+                int amount = int.Parse(Amount.Text);
+                float price = float.Parse(Price.Text);
+                int category = int.Parse(Category.SelectedValue);
+                DateTime creationDate = DateTime.Parse(CreationDate.Text);
 
-            ENProduct nw_product_EN = new ENProduct(Code.Text, Name.Text, amount, price, category, creationDate);
-            nw_product_EN.Read();
+                ENProduct nw_product_EN = new ENProduct(Code.Text, Name.Text, amount, price, category, creationDate);
+                nw_product_EN.Read();
+            }
+            else
+            {
+                LblInfo.Text = "Error: Invalid input";
+            }
+            
         }
         protected void ButtonRF_Action(object sender, EventArgs e)
         {
-            int amount = int.Parse(Amount.Text);
-            float price = float.Parse(Price.Text);
-            int category = int.Parse(Category.SelectedValue);
-            DateTime creationDate = DateTime.Parse(CreationDate.Text);
+            if (!string.IsNullOrWhiteSpace(Code.Text) || Code.Text.All(char.IsLetterOrDigit) || !(Code.Text.Length > 16))
+            {
+                int amount = int.Parse(Amount.Text);
+                float price = float.Parse(Price.Text);
+                int category = int.Parse(Category.SelectedValue);
+                DateTime creationDate = DateTime.Parse(CreationDate.Text);
 
-            ENProduct nw_product_EN = new ENProduct(Code.Text, Name.Text, amount, price, category, creationDate);
-            nw_product_EN.ReadFirst();
+                ENProduct nw_product_EN = new ENProduct(Code.Text, Name.Text, amount, price, category, creationDate);
+                nw_product_EN.ReadFirst();
+            }
+            else
+            {
+                LblInfo.Text = "Error: Invalid input";
+            }
+
         }
 
         protected void ButtonPrev_Action(object sender, EventArgs e)
         {
-            int amount = int.Parse(Amount.Text);
-            float price = float.Parse(Price.Text);
-            int category = int.Parse(Category.SelectedValue);
-            DateTime creationDate = DateTime.Parse(CreationDate.Text);
+            if (!string.IsNullOrWhiteSpace(Code.Text) || Code.Text.All(char.IsLetterOrDigit) || !(Code.Text.Length > 16))
+            {
+                int amount = int.Parse(Amount.Text);
+                float price = float.Parse(Price.Text);
+                int category = int.Parse(Category.SelectedValue);
+                DateTime creationDate = DateTime.Parse(CreationDate.Text);
 
-            ENProduct nw_product_EN = new ENProduct(Code.Text, Name.Text, amount, price, category, creationDate);
-            nw_product_EN.ReadPrev();
+                ENProduct nw_product_EN = new ENProduct(Code.Text, Name.Text, amount, price, category, creationDate);
+                nw_product_EN.ReadPrev();
+            }
+            else
+            {
+                LblInfo.Text = "Error: Invalid input";
+            }
+
         }
         protected void ButtonNext_Action(object sender, EventArgs e)
         {
-            int amount = int.Parse(Amount.Text);
-            float price = float.Parse(Price.Text);
-            int category = int.Parse(Category.SelectedValue);
-            DateTime creationDate = DateTime.Parse(CreationDate.Text);
+            if (!string.IsNullOrWhiteSpace(Code.Text) || Code.Text.All(char.IsLetterOrDigit) || !(Code.Text.Length > 16))
+            {
+                int amount = int.Parse(Amount.Text);
+                float price = float.Parse(Price.Text);
+                int category = int.Parse(Category.SelectedValue);
+                DateTime creationDate = DateTime.Parse(CreationDate.Text);
 
-            ENProduct nw_product_EN = new ENProduct(Code.Text, Name.Text, amount, price, category, creationDate);
-            nw_product_EN.ReadNext();
+                ENProduct nw_product_EN = new ENProduct(Code.Text, Name.Text, amount, price, category, creationDate);
+                nw_product_EN.ReadNext();
+            }
+            else
+            {
+                LblInfo.Text = "Error: Invalid input";
+            }
+
         }
     }
 }
