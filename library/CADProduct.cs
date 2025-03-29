@@ -156,6 +156,7 @@ namespace library
                         {
                             if (reader.Read())
                             {
+                                en.Code = reader["Code"].ToString();
                                 en.Name = reader["Name"].ToString();
                                 en.Amount = Convert.ToInt32(reader["Amount"]);
                                 en.Price = Convert.ToSingle(reader["Price"]);
@@ -184,6 +185,7 @@ namespace library
                 using (SqlConnection conn = new SqlConnection(constring))
                 {
                     string query = "SELECT TOP 1 * FROM Products ORDER BY ID ASC";
+                    //string query = "SELECT TOP 1 * FROM Products ORDER BY Code ASC";
 
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -216,7 +218,8 @@ namespace library
         {
             try
             {
-                string query = "SELECT TOP 1 * FROM Products WHERE Code > @Code ORDER BY Code ASC";
+                //string query = "SELECT TOP 1 * FROM Products WHERE Code > @Code ORDER BY Code ASC";
+                string query = "SELECT TOP 1 * FROM Products WHERE ID > (select ID from Products where code=@Code) ORDER BY ID ASC";
 
                 using (SqlConnection conn = new SqlConnection(constring))
                 {
@@ -257,11 +260,14 @@ namespace library
 
                 using (SqlConnection conn = new SqlConnection(constring))
                 {
-                    string query = "SELECT TOP 1 * FROM Products WHERE Code < @Code ORDER BY Code DESC";
+                    //string query = "SELECT TOP 1 * FROM Products WHERE Code < @Code ORDER BY Code DESC";
+                    string query = "SELECT TOP 1 * FROM Products WHERE ID < (select ID from Products where code=@Code) ORDER BY ID DESC";
 
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
+                        cmd.Parameters.AddWithValue("@Code", en.Code);
+
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.Read())

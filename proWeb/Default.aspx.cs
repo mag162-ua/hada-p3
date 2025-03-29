@@ -157,13 +157,19 @@ namespace proWeb
                     return;
                 }
                 nw_product_EN.Read();
+                Code.Text = nw_product_EN.Code;
+                Name.Text = nw_product_EN.Name;
+                Amount.Text = nw_product_EN.Amount.ToString();
+                Category.SelectedIndex = nw_product_EN.Category-1;
+                Price.Text = nw_product_EN.Price.ToString("F2");
+                CreationDate.Text = nw_product_EN.CreationDate.ToString("dd/MM/yyyy HH:mm:ss");
                 LblInfo.Text = "Product readed successfully";
             }
             else
             {
                 LblInfo.Text = "Error: Invalid input";
             }
-            
+           
         }
         protected void ButtonRF_Action(object sender, EventArgs e)
         {
@@ -172,15 +178,22 @@ namespace proWeb
             DateTime creationDate = DateTime.Now;
 
             ENProduct nw_product_EN = new ENProduct(Code.Text, Name.Text, amount, price, Category.SelectedIndex+1, creationDate);
-            if (!ProductExists(nw_product_EN))
+            /*if (!ProductExists(nw_product_EN))
             {
                 LblInfo.Text = "Error: Product do not exists";
                 return;
-            }
+            }*/
             if (!nw_product_EN.ReadFirst())
             {
                 LblInfo.Text = "Error: Invalid input";
+                return;
             }
+            Code.Text = nw_product_EN.Code;
+            Name.Text = nw_product_EN.Name;
+            Amount.Text = nw_product_EN.Amount.ToString();
+            Category.SelectedIndex = nw_product_EN.Category - 1;
+            Price.Text = nw_product_EN.Price.ToString("F2");
+            CreationDate.Text = nw_product_EN.CreationDate.ToString("dd/MM/yyyy HH:mm:ss");
             LblInfo.Text = "Product readed successfully";
 
 
@@ -201,6 +214,12 @@ namespace proWeb
                     return;
                 }
                 nw_product_EN.ReadPrev();
+                Code.Text = nw_product_EN.Code;
+                Name.Text = nw_product_EN.Name;
+                Amount.Text = nw_product_EN.Amount.ToString();
+                Category.SelectedIndex = nw_product_EN.Category - 1;
+                Price.Text = nw_product_EN.Price.ToString("F2");
+                CreationDate.Text = nw_product_EN.CreationDate.ToString("dd/MM/yyyy HH:mm:ss");
                 LblInfo.Text = "Product readed successfully";
             }
             else
@@ -224,6 +243,12 @@ namespace proWeb
                     return;
                 }
                 nw_product_EN.ReadNext();
+                Code.Text = nw_product_EN.Code;
+                Name.Text = nw_product_EN.Name;
+                Amount.Text = nw_product_EN.Amount.ToString();
+                Category.SelectedIndex = nw_product_EN.Category - 1;
+                Price.Text = nw_product_EN.Price.ToString("F2");
+                CreationDate.Text = nw_product_EN.CreationDate.ToString("dd/MM/yyyy HH:mm:ss");
                 LblInfo.Text = "Product readed successfully";
             }
             else
