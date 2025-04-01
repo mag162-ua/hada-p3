@@ -83,7 +83,7 @@
          <asp:TextBox ID="Price" runat="server"></asp:TextBox>
          <asp:RequiredFieldValidator ControlToValidate="Price" ErrorMessage="Price is required" runat="server" ForeColor="Red" ValidationGroup="UpdateValidation" />
             &nbsp
-         <asp:RegularExpressionValidator ControlToValidate="Price" ValidationExpression="^\d{1,4}(\.\d{1,2})?$" ErrorMessage="Price must be between 9999.99" runat="server" ForeColor="Red" ValidationGroup="UpdateValidation" /> 
+         <asp:RegularExpressionValidator ControlToValidate="Price" ValidationExpression="^\d{1,4}(\,\d{1,2})?$" ErrorMessage="Price must be between 9999,99" runat="server" ForeColor="Red" ValidationGroup="UpdateValidation" /> 
          <br />
          <br />
          Creation Date&nbsp;&nbsp;&nbsp;&nbsp;

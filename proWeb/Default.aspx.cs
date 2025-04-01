@@ -208,12 +208,12 @@ namespace proWeb
                 DateTime creationDate = DateTime.Now;
 
                 ENProduct nw_product_EN = new ENProduct(Code.Text, Name.Text, amount, price, Category.SelectedIndex+1, creationDate);
-                if (!ProductExists(nw_product_EN))
+                if (!nw_product_EN.ReadPrev()/*ProductExists(nw_product_EN)*/)
                 {
                     LblInfo.Text = "Error: Product do not exists";
                     return;
                 }
-                nw_product_EN.ReadPrev();
+                //nw_product_EN.ReadPrev();
                 Code.Text = nw_product_EN.Code;
                 Name.Text = nw_product_EN.Name;
                 Amount.Text = nw_product_EN.Amount.ToString();
@@ -221,6 +221,7 @@ namespace proWeb
                 Price.Text = nw_product_EN.Price.ToString("F2");
                 CreationDate.Text = nw_product_EN.CreationDate.ToString("dd/MM/yyyy HH:mm:ss");
                 LblInfo.Text = "Product readed successfully";
+                
             }
             else
             {
@@ -237,12 +238,12 @@ namespace proWeb
                 DateTime creationDate = DateTime.Now;
 
                 ENProduct nw_product_EN = new ENProduct(Code.Text, Name.Text, amount, price, Category.SelectedIndex+1, creationDate);
-                if (!ProductExists(nw_product_EN))
+                if (!nw_product_EN.ReadNext()/*ProductExists(nw_product_EN)*/)
                 {
                     LblInfo.Text = "Error: Product do not exists";
                     return;
                 }
-                nw_product_EN.ReadNext();
+                //nw_product_EN.ReadNext();
                 Code.Text = nw_product_EN.Code;
                 Name.Text = nw_product_EN.Name;
                 Amount.Text = nw_product_EN.Amount.ToString();
