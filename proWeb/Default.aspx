@@ -15,6 +15,7 @@
 
         .banner {
             background-color: #39b8b8;
+            text-align:center;
             color: black;
             padding: 40px;
             font-size: 34px;
@@ -90,7 +91,7 @@
          Creation Date&nbsp;&nbsp;&nbsp;&nbsp;
          <asp:TextBox ID="CreationDate" runat="server"></asp:TextBox>
          <asp:RequiredFieldValidator ControlToValidate="CreationDate" ErrorMessage="Creation Date is required" runat="server" ForeColor="Red" ValidationGroup="CreateValidation"/>
-            &nbsp
+         &nbsp
          <asp:RegularExpressionValidator ControlToValidate="CreationDate" ValidationExpression="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4} (0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$" ErrorMessage="Invalid date format (dd/mm/yyyy hh:mm:ss)" runat="server" ForeColor="Red" ValidationGroup="CreateValidation" />
          <br />
          <br />
